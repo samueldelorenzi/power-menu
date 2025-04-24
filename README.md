@@ -36,7 +36,7 @@ chmod +x power-menu
 3. Instale:
 
 ```bash
-make install
+sudo make install
 ```
 
 Agora você pode chamar o menu com:
@@ -48,7 +48,7 @@ power-menu
 Para remover:
 
 ```bash
-make uninstall
+sudo make uninstall
 ```
 
 ---
