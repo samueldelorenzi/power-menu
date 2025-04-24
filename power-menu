@@ -1,0 +1,23 @@
+#!/bin/bash
+
+LOCKFILE="/tmp/power-menu.lock"
+
+if [[ -e "$LOCKFILE" ]]; then
+    exit 0
+fi
+
+touch "$LOCKFILE"
+
+opcao=$(zenity --list --window-icon="/usr/share/icons/power-on.png" --title="Opções de energia" --text="Escolha uma opção:" \
+    --column="Ação" "Desligar" "Reiniciar" "Bloquear" "Encerrar sessão" \
+    --height=203 --width=300)
+
+case "$opcao" in
+    "Desligar") systemctl poweroff ;;
+    "Reiniciar") systemctl reboot ;;
+    "Bloquear") gnome-screensaver-command -l ;;
+    "Encerrar sessão") gnome-session-quit --logout --no-prompt ;;
+esac
+
+rm -f "$LOCKFILE"
+
